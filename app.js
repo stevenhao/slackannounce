@@ -139,7 +139,7 @@ var status_func = function(type) {
             return res.status(200).send("You must supply a reason why you can't make it.");
         }
         db.task(function(task) {
-            return task.one("SELECT * FROM practices ORDER BY starttime DESC LIMIT 1").then(function(practice) {
+            return task.one("SELECT * FROM practices ORDER BY id DESC LIMIT 1").then(function(practice) {
                 var id = practice.id;
                 return task.oneOrNone("SELECT username from replies where practiceid = $1 and username = $2", [id, userName]).then(function(reply) {
                     if (reply) {
